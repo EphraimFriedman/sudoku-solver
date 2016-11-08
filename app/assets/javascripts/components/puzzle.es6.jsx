@@ -9,6 +9,7 @@ class Puzzle extends React.Component{
 	}
 
 	componentDidMount(){
+
 		new_board = this.split_board(this.props.data)
 
 		this.setState({
@@ -31,7 +32,10 @@ class Puzzle extends React.Component{
 			url: '/solve/1',
 			method: 'GET'
 			}).done((response) =>{
-				debugger
+			
+				this.setState({
+			board: this.split_board(response)
+		})
 			})
 	}
 
@@ -42,7 +46,7 @@ class Puzzle extends React.Component{
 					<div className="col-md-4 col-md-offset-4">
 						
 
-			 			<h3>{this.state.board}</h3>
+			 			
 
 			 			<table className="table table-bordered text-center">
 							<tbody>

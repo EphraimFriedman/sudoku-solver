@@ -6,7 +6,9 @@ class PuzzlesController < ApplicationController
 	end
 
 	def solve
+		@puzzle = Puzzle.find(params[:puzzle_id])
+		@solved_board = @puzzle.solve_puzzle
 
-		render text: 'hello'
+		render json: @solved_board
 	end
 end
