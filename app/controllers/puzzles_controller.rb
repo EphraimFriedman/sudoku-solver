@@ -1,14 +1,14 @@
 class PuzzlesController < ApplicationController
 
 	def index
-		@puzzle = Puzzle.first.board.split('')
+		@puzzle = Puzzle.first(5).sample
 
 	end
 
 	def solve
 		@puzzle = Puzzle.find(params[:puzzle_id])
 		@solved_board = @puzzle.solve_puzzle
-
-		render json: @solved_board
+	
+		render text: @solved_board
 	end
 end

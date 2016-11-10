@@ -10,7 +10,7 @@ class Puzzle extends React.Component{
 
 	componentDidMount(){
 
-		new_board = this.split_board(this.props.data)
+		new_board = this.split_board(this.props.data.board)
 
 		this.setState({
 			board: new_board
@@ -18,9 +18,12 @@ class Puzzle extends React.Component{
 	}
 
 	split_board(board){
+
+		first_split = board.split('')
+
 		nestedBoard = []
-		for (var i = 0; i < 9; i++) {		
-			nestedBoard.push(board.splice(0,9)) 
+		for (var i = 0; i < 9; i++) {
+			nestedBoard.push(first_split.splice(0,9))
 		}
 		return nestedBoard
 	}
@@ -28,11 +31,12 @@ class Puzzle extends React.Component{
 	solve(event){
 		event.preventDefault()
 
+		id = this.props.data.id
 		$.ajax({
-			url: '/solve/1',
+			url: "/solve/" + this.props.data.id,
 			method: 'GET'
 			}).done((response) =>{
-			
+
 				this.setState({
 			board: this.split_board(response)
 		})
@@ -44,13 +48,13 @@ class Puzzle extends React.Component{
 			<div className="container">
 				<div className="row">
 					<div className="col-md-4 col-md-offset-4">
-						
 
-			 			
+
+
 
 			 			<table className="table table-bordered text-center">
 							<tbody>
-			 			
+
 					 			{
 					 				this.state.board.map((row, idx) => {
 						 				return (
@@ -59,14 +63,14 @@ class Puzzle extends React.Component{
 						 							if(num === '-'){
 						 								return (<td></td>)
 						 							}else{
-						 							return (<td>{num}</td>)} 
+						 							return (<td>{num}</td>)}
 						 						}
 						 						)}
 						 					</tr>)
 						 				}
-					 				)		
+					 				)
 					 			}
-			 			
+
 			 				</tbody>
 						</table>
 					</div>
