@@ -119,7 +119,7 @@ class Puzzle extends React.Component{
 				<div className="row">
 					<div className="col-md-4 col-md-offset-4">
 					{this.buttonDisplay()}
-						
+
 					</div>
 				</div>
 			 </div>

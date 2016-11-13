@@ -2,6 +2,7 @@ class PuzzlesController < ApplicationController
 
 	def index
 			@puzzle = Puzzle.first(5).sample
+			# @puzzle = Puzzle.find(6)
 		if request.xhr?
 			render json: @puzzle
 		else
